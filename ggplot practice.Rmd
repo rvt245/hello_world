@@ -1,0 +1,53 @@
+---
+title: "ggplot practice"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Description
+
+This is a practice of ggplot package using the video at https://www.youtube.com/watch?v=UK2FhxMnmjQ
+
+##  Plot of hwy vs displ
+```{r mpg}
+library(tidyverse)
+library(ggplot2)
+data(mpg)
+plot(mpg$displ, mpg$hwy)
+ggplot(data=mpg)+
+  geom_point(mapping = aes(x = displ, y = hwy, color = class))
+```
+
+## Plot of hwy vs displ
+
+```{r facets 1}
+ggplot(data=mpg)+
+  geom_point(mapping = aes(x = displ, y = hwy, color = class)) +
+  facet_wrap(~ class, nrow = 3) +
+  labs(
+    title = "Fuel efficiency generally decreases with engine size",
+    caption = "Data from fueleconomy.gov",
+    x="Engine displacement (liters)",
+    y="Highway gas mileage (mpg)"
+  )
+```
+
+## Save plot as r-object (p1)
+
+```{r facets 2}
+p1 = ggplot(data=mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, color = class))
+
+p1 + facet_wrap(~ class, nrow=1)
+p1 + facet_wrap(~ class, nrow=2)
+p1 + facet_wrap(~ class, nrow=3)
+```
+
+## Manual aes property
+```{r color blue}
+ggplot(data=mpg)+
+  geom_point(mapping = aes(x=displ,y=hwy), color="blue")
+```
