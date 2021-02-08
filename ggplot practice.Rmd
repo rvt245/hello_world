@@ -15,6 +15,7 @@ This is a practice of ggplot package using the video at https://www.youtube.com/
 ```{r mpg}
 library(tidyverse)
 library(ggplot2)
+
 data(mpg)
 plot(mpg$displ, mpg$hwy)
 ggplot(data=mpg)+
